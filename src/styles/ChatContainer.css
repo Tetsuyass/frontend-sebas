@@ -1,0 +1,37 @@
+.chat-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    /*
+        Navbar : ~57px de hauteur + 16px top + 16px marge basse = ~89px
+        QueryZone : ~62px de hauteur + 20px bottom + 16px marge haute = ~98px
+        On prend des valeurs généreuses pour éviter tout recouvrement.
+    */
+    padding: 190px 24px 250px 24px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(184, 151, 90, 0.35) transparent;
+}
+
+.chat-container::-webkit-scrollbar { width: 6px; }
+.chat-container::-webkit-scrollbar-thumb {
+    background: rgba(184, 151, 90, 0.35);
+    border-radius: 3px;
+}
+.chat-container::-webkit-scrollbar-track { background: transparent; }
+
+@media (max-width: 768px) {
+    .chat-container { padding: 84px 16px 104px 16px; }
+}
+@media (max-width: 480px) {
+    .chat-container { padding: 80px 12px 100px 12px; }
+}

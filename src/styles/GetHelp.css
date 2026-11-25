@@ -1,0 +1,330 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap');
+
+/* ==============================
+   PAGE (scroll interne : le body est en overflow hidden)
+   ============================== */
+
+.gh-page {
+    --bg-panel: var(--panel);
+    --bg-input: var(--input);
+    --bg-input-focus: var(--input-focus);
+    --text-primary: var(--ivoire);
+    --text-muted: var(--ivoire-terne);
+    --border: var(--filet);
+    --radius: 3px;
+    --transition: 0.25s ease;
+
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    font-family: var(--font-body);
+    font-size: 17px;
+    color: var(--text-primary);
+    background-color: var(--ebene);
+    background-image: url("../assets/background_idea_2.jpg");
+    background-size: cover;
+    background-position: center;
+    box-sizing: border-box;
+}
+
+.gh-page *, .gh-page *::before, .gh-page *::after { box-sizing: border-box; }
+
+.gh-scroll {
+    height: 100%;
+    overflow-y: auto;
+    padding: 40px 6vw 120px; /* espace pour la navbar */
+    background:
+            radial-gradient(ellipse at 50% 0%, rgba(74, 18, 32, 0.3), transparent 60%),
+            linear-gradient(180deg, rgba(12, 8, 9, 0.62), rgba(12, 8, 9, 0.88));
+    scrollbar-width: thin;
+    scrollbar-color: rgba(184, 151, 90, 0.4) transparent;
+}
+
+/* ==============================
+   HEADER
+   ============================== */
+
+.gh-header {
+    max-width: 1100px;
+    margin: 0 auto 40px;
+    animation: ghFadeUp 0.6s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.gh-back {
+    display: block;
+    margin-bottom: 24px;
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: color var(--transition);
+}
+
+.gh-back:hover { color: var(--or-clair); border: none; }
+
+.gh-tag {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 8px 16px;
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    background: var(--bordeaux);
+    color: var(--or-clair);
+    border: 1px solid var(--or);
+    box-shadow: 0 0 0 3px var(--ebene), 0 0 0 4px var(--filet);
+}
+
+.gh-title {
+    margin: 0 0 24px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(28px, 4vw, 46px);
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+    color: var(--ivoire);
+}
+
+.gh-search {
+    width: 100%;
+    max-width: 520px;
+    padding: 14px 18px;
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    outline: none;
+    transition: var(--transition);
+}
+
+.gh-search::placeholder { color: var(--text-muted); font-style: italic; opacity: 0.75; }
+
+.gh-search:focus {
+    background: var(--bg-input-focus);
+    border-color: var(--filet-fort);
+    box-shadow: 0 0 0 3px rgba(184, 151, 90, 0.1);
+}
+
+/* ==============================
+   LAYOUT 2 COLONNES
+   ============================== */
+
+.gh-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 24px;
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.gh-section-title {
+    margin: 0 0 22px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: var(--or-clair);
+}
+
+/* ==============================
+   FAQ
+   ============================== */
+
+.gh-faq-item {
+    margin-bottom: 10px;
+    background: var(--bg-panel);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--or);
+    border-radius: 2px var(--radius-panel) var(--radius-panel) 2px;
+    transition: border-color var(--transition);
+}
+
+.gh-faq-item.open,
+.gh-faq-item:hover {
+    border-color: var(--filet-fort);
+    border-left-color: var(--or-clair);
+}
+
+.gh-faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    padding: 16px 18px;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+}
+
+.gh-faq-question:hover { border: none; }
+
+.gh-faq-question:focus-visible,
+.gh-submit:focus-visible,
+.gh-back:focus-visible {
+    outline: 2px solid var(--or-clair);
+    outline-offset: 2px;
+}
+
+.gh-faq-category {
+    display: block;
+    margin-bottom: 4px;
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--or);
+}
+
+.gh-faq-chevron {
+    flex-shrink: 0;
+    font-size: 22px;
+    color: var(--or);
+    transition: transform var(--transition);
+}
+
+.gh-faq-item.open .gh-faq-chevron {
+    transform: rotate(45deg);
+    color: var(--or-clair);
+}
+
+.gh-faq-answer {
+    margin: 0;
+    padding: 0 18px 18px;
+    font-size: 1.08rem;
+    line-height: 1.7;
+    color: #cdc3ae;
+    animation: ghFadeUp 0.25s ease both;
+}
+
+.gh-empty {
+    padding: 20px;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--text-muted);
+    background: var(--bg-panel);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+}
+
+/* ==============================
+   CONTACT
+   ============================== */
+
+.gh-contact {
+    position: sticky;
+    top: 0;
+    padding: 30px 26px;
+    background: var(--bg-panel);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-panel);
+    box-shadow: var(--cadre);
+}
+
+.gh-contact-intro {
+    margin: -8px 0 20px;
+    font-size: 1.08rem;
+    line-height: 1.6;
+    color: #b9b09c;
+}
+
+.gh-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.gh-input {
+    width: 100%;
+    padding: 12px 16px;
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    outline: none;
+    transition: var(--transition);
+}
+
+.gh-input::placeholder { color: var(--text-muted); font-style: italic; opacity: 0.75; }
+
+.gh-input:focus {
+    background: var(--bg-input-focus);
+    border-color: var(--filet-fort);
+    box-shadow: 0 0 0 3px rgba(184, 151, 90, 0.1);
+}
+
+.gh-textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.5;
+}
+
+.gh-submit {
+    width: 100%;
+    padding: 13px 0;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #1a0e0a;
+    background: linear-gradient(180deg, var(--or-clair), var(--or));
+    border: 1px solid #8a6d36;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: transform var(--transition), opacity var(--transition);
+}
+
+.gh-submit:hover:not(:disabled) { opacity: 0.92; transform: scale(0.98); }
+.gh-submit:active:not(:disabled) { transform: scale(0.94); }
+.gh-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.gh-status {
+    margin: 0;
+    font-size: 1.02rem;
+    line-height: 1.5;
+}
+
+.gh-status-error { color: var(--danger); }
+.gh-status-success { color: var(--succes); }
+
+/* ==============================
+   ANIMATION + RESPONSIVE
+   ============================== */
+
+@keyframes ghFadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gh-page *, .gh-page *::before, .gh-page *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .gh-layout { grid-template-columns: 1fr; }
+    .gh-contact { position: static; }
+}

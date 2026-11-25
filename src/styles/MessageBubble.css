@@ -1,0 +1,80 @@
+.message-bubble {
+    display: flex;
+    padding: 15px;
+    flex-direction: column;
+    width: fit-content; /* s'adapte au contenu */
+    max-width: 70%;     /* garde une limite max */
+    box-sizing: border-box;
+    border: 1px solid var(--filet);
+    box-shadow:
+            0 10px 24px rgba(0, 0, 0, 0.55),
+            inset 0 0 0 4px var(--nuit),
+            inset 0 0 0 5px rgba(184, 151, 90, 0.16);
+    background: var(--nuit);
+    border-radius: var(--radius-panel);
+    margin-bottom: 3vh;
+    animation: bubbleAppear 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.message-bubble.user {
+    align-items: flex-end;
+    max-width: 70%;
+    align-self: flex-end; /* pousse la bulle à droite */
+    margin-right: 42vh;
+    background: #1c0b11;
+}
+
+@keyframes bubbleAppear {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .message-bubble { animation: none; }
+}
+
+.message-bubble.bot,
+.message-bubble.lilith {
+    align-items: flex-start;
+}
+
+.message-bubble.user .profil { flex-direction: row-reverse; }
+
+.message-text {
+    padding: 11px 15px;
+    font-size: 1.08rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    line-height: 1.7;
+    color: var(--ivoire);
+    word-wrap: break-word;
+
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Le maître : velours bordeaux */
+.message-bubble.user .message-text {
+    background: var(--bordeaux);
+    border: 1px solid rgba(220, 196, 142, 0.35);
+    border-radius: 12px 12px 2px 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+    margin-right: 2px;
+}
+
+/* Le majordome : ébène et filet d'or */
+.message-bubble.bot .message-text,
+.message-bubble.lilith .message-text {
+    background: var(--ebene);
+    border: 1px solid var(--filet);
+    border-radius: 12px 12px 12px 2px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+    margin-left: 2px;
+}
+
+@media (max-width: 480px) {
+    .message-text { max-width: 85%; }
+    .message-bubble.user .message-text  { margin-left: 5%; }
+    .message-bubble.bot .message-text,
+    .message-bubble.lilith .message-text { margin-right: 5%; }
+}

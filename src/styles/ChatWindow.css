@@ -1,0 +1,21 @@
+.chat-window {
+    /* Voile ébène sur l'image : la pièce reste à la lueur des chandelles */
+    background-image:
+            radial-gradient(ellipse at 50% 35%, rgba(74, 18, 32, 0.25), rgba(12, 8, 9, 0.85) 75%),
+            linear-gradient(rgba(12, 8, 9, 0.55), rgba(12, 8, 9, 0.55)),
+            url("../assets/background_idea_2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-color: var(--ebene);
+
+    height: 120vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    font-family: var(--font-body);
+    font-size: 17px;
+    color: var(--ivoire);
+    position: relative;
+    /* PAS d'overflow hidden ici — ça coupe la navbar fixe */
+}
