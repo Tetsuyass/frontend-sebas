@@ -1,0 +1,97 @@
+/* ==============================================================
+   MANOIR — jetons de design (chargé globalement)
+   Ébène, bordeaux de velours, or patiné, ivoire de vieux papier.
+   Tous les autres fichiers CSS lisent ces variables.
+   ============================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+:root {
+  /* Palette */
+  --ebene: #0c0809;
+  --nuit: #150c0f;
+  --bordeaux: #4a1220;
+  --bordeaux-vif: #6b1a2c;
+  --or: #b8975a;
+  --or-clair: #dcc48e;
+  --ivoire: #ece3d0;
+  --ivoire-terne: #a89f8c;
+  --danger: #e08a92;
+  --succes: #9cc79c;
+
+  /* Surfaces */
+  --panel: rgba(21, 12, 15, 0.88);
+  --input: #1f1316;
+  --input-focus: #2b1a1f;
+  --filet: rgba(184, 151, 90, 0.28);
+  --filet-fort: rgba(220, 196, 142, 0.6);
+
+  /* Typographie */
+  --font-display: 'Cinzel', 'Times New Roman', serif;
+  --font-body: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+
+  /* Formes : rigueur d'un salon victorien, peu d'arrondis */
+  --radius: 3px;
+  --radius-panel: 5px;
+  --transition: 0.25s ease;
+
+  /* Cadre double doré (le détail signature du site) */
+  --cadre: inset 0 0 0 5px var(--nuit), inset 0 0 0 6px var(--filet), 0 18px 48px rgba(0, 0, 0, 0.55);
+
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.55;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+
+  color-scheme: dark;
+  color: var(--ivoire);
+  background-color: var(--ebene);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.grecaptcha-badge { visibility: hidden !important; }
+
+a {
+  font-weight: 600;
+  color: var(--or);
+  text-decoration: inherit;
+}
+a:hover { color: var(--or-clair); }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#root { height: 100%; width: 100%; }
+
+h1 {
+  font-family: var(--font-display);
+  font-size: 3.2em;
+  line-height: 1.15;
+}
+
+button {
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--ivoire);
+  background-color: var(--nuit);
+  cursor: pointer;
+  transition: border-color 0.25s, background-color 0.25s;
+}
+button:hover { border-color: var(--or); }
+button:focus,
+button:focus-visible { outline: 2px solid var(--or-clair); outline-offset: 2px; }
+
+::selection { background: var(--bordeaux-vif); color: var(--ivoire); }
