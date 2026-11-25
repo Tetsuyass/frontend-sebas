@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap');
+
+/* ==============================
+   NAVBAR — la plaque de la maison
+   ============================== */
+
+.navbar {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 20px;
+  width: calc(100% - 48px);
+  max-width: 1200px;
+
+  background: rgba(12, 8, 9, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border: 1px solid var(--filet);
+  border-radius: var(--radius-panel);
+
+  box-shadow:
+          0 6px 28px rgba(0, 0, 0, 0.7),
+          inset 0 0 0 3px var(--nuit),
+          inset 0 0 0 4px rgba(184, 151, 90, 0.16);
+
+  font-family: var(--font-body);
+  z-index: 1000;
+  transition: box-shadow 0.3s ease;
+}
+
+@keyframes slide-down-fade {
+  from { opacity: 0; transform: translateX(-50%) translateY(-16px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+.navbar { animation: slide-down-fade 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* Icônes */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  border-radius: var(--radius);
+  border: 1px solid var(--filet);
+  background: rgba(184, 151, 90, 0.06);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  filter: sepia(0.7) saturate(1.4) brightness(0.9);
+  opacity: 0.8;
+
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+.icon:hover {
+  background: rgba(184, 151, 90, 0.14);
+  border-color: var(--filet-fort);
+  filter: sepia(0.7) saturate(1.5) brightness(1.15);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.icon:active { transform: scale(0.95); }
+.icon:focus-visible { outline: 2px solid var(--or-clair); outline-offset: 2px; }
+
+/* Nom de l'app */
+.app-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(14px, 1.8vw, 20px);
+  margin: 0;
+  color: var(--or-clair);
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-shadow: 0 0 18px rgba(184, 151, 90, 0.25);
+}
+
+/* Badge version : petit cartouche */
+.version {
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--ivoire-terne);
+  margin: 0;
+  padding: 6px 12px;
+
+  background: var(--nuit);
+  border: 1px solid var(--filet);
+  border-radius: var(--radius);
+
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.5);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.version:hover {
+  color: var(--or-clair);
+  border-color: var(--filet-fort);
+}
+
+.navbar:hover {
+  box-shadow:
+          0 10px 40px rgba(0, 0, 0, 0.75),
+          inset 0 0 0 3px var(--nuit),
+          inset 0 0 0 4px rgba(184, 151, 90, 0.28);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar { animation: none; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar { top: 12px; width: calc(100% - 32px); padding: 10px 14px; }
+  .app-name { font-size: 13px; letter-spacing: 3px; }
+  .version { font-size: 10px; padding: 5px 9px; }
+  .icon { width: 28px; height: 28px; padding: 5px; }
+}
+
+@media (max-width: 480px) {
+  .navbar { top: 10px; width: calc(100% - 20px); padding: 8px 12px; }
+  .app-name { font-size: 11px; letter-spacing: 2px; }
+  .version { font-size: 9px; padding: 4px 8px; }
+}

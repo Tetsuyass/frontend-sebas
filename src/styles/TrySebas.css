@@ -1,0 +1,428 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap');
+
+/* ==============================
+   PAGE (scroll interne : le body est en overflow hidden)
+   ============================== */
+
+.ts-page {
+    --bg-panel: var(--panel);
+    --bg-input: var(--input);
+    --bg-input-focus: var(--input-focus);
+    --text-primary: var(--ivoire);
+    --text-muted: var(--ivoire-terne);
+    --border: var(--filet);
+    --radius: 3px;
+    --transition: 0.25s ease;
+
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    font-family: var(--font-body);
+    font-size: 17px;
+    color: var(--text-primary);
+    background-color: var(--ebene);
+    background-image: url("../assets/background_idea_2.jpg");
+    background-size: cover;
+    background-position: center;
+    box-sizing: border-box;
+}
+
+.ts-page *, .ts-page *::before, .ts-page *::after { box-sizing: border-box; }
+
+.ts-scroll {
+    height: 100%;
+    overflow-y: auto;
+    padding: 40px 6vw 120px; /* espace pour la navbar */
+    background:
+            radial-gradient(ellipse at 50% 0%, rgba(74, 18, 32, 0.3), transparent 60%),
+            linear-gradient(180deg, rgba(12, 8, 9, 0.62), rgba(12, 8, 9, 0.88));
+    scrollbar-width: thin;
+    scrollbar-color: rgba(184, 151, 90, 0.4) transparent;
+}
+
+/* ==============================
+   HEADER
+   ============================== */
+
+.ts-header {
+    max-width: 1100px;
+    margin: 0 auto 32px;
+    animation: tsFadeUp 0.6s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.ts-back {
+    display: block;
+    margin-bottom: 24px;
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: color var(--transition);
+}
+
+.ts-back:hover { color: var(--or-clair); border: none; }
+
+.ts-tag {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 8px 16px;
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    background: var(--bordeaux);
+    color: var(--or-clair);
+    border: 1px solid var(--or);
+    box-shadow: 0 0 0 3px var(--ebene), 0 0 0 4px var(--filet);
+}
+
+.ts-title {
+    margin: 0 0 12px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(28px, 4vw, 46px);
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+    color: var(--ivoire);
+}
+
+.ts-lead {
+    margin: 0;
+    max-width: 580px;
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: #cdc3ae;
+}
+
+/* ==============================
+   LAYOUT
+   ============================== */
+
+.ts-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 20px;
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ==============================
+   CHAT
+   ============================== */
+
+.ts-chat {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    background: var(--bg-panel);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-panel);
+    box-shadow: var(--cadre);
+}
+
+.ts-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    height: 46vh;
+    min-height: 300px;
+    padding: 4px 6px 12px 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(184, 151, 90, 0.35) transparent;
+}
+
+.ts-bubble {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    max-width: 85%;
+    animation: tsFadeUp 0.25s ease both;
+}
+
+.ts-sebas { align-self: flex-start; }
+.ts-user { align-self: flex-end; flex-direction: row-reverse; }
+
+.ts-avatar {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 50%;
+    border: 2px solid var(--or);
+    box-shadow: 0 0 0 2px var(--ebene);
+    background: var(--nuit);
+}
+
+.ts-bubble-text {
+    padding: 12px 16px;
+    font-size: 1.08rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-word;
+    border-radius: 12px;
+}
+
+.ts-sebas .ts-bubble-text {
+    background: var(--ebene);
+    border: 1px solid var(--border);
+    border-bottom-left-radius: 2px;
+}
+
+.ts-user .ts-bubble-text {
+    background: var(--bordeaux);
+    color: var(--ivoire);
+    border: 1px solid rgba(220, 196, 142, 0.35);
+    border-bottom-right-radius: 2px;
+}
+
+/* Indicateur "en train d'écrire" */
+.ts-typing {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    padding: 16px;
+}
+
+.ts-typing span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--or);
+    animation: tsDot 1s infinite ease-in-out;
+}
+
+.ts-typing span:nth-child(2) { animation-delay: 0.15s; }
+.ts-typing span:nth-child(3) { animation-delay: 0.3s; }
+
+/* Quota épuisé */
+.ts-exhausted {
+    align-self: stretch;
+    padding: 18px;
+    margin-top: 6px;
+    text-align: center;
+    background: rgba(107, 26, 44, 0.25);
+    border: 1px dashed var(--filet-fort);
+    border-radius: var(--radius);
+}
+
+.ts-exhausted p {
+    margin: 0 0 14px;
+    font-size: 1.08rem;
+    line-height: 1.6;
+}
+
+.ts-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* ==============================
+   FORMULAIRE
+   ============================== */
+
+.ts-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.ts-input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 16px;
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    outline: none;
+    transition: var(--transition);
+}
+
+.ts-input::placeholder { color: var(--text-muted); font-style: italic; opacity: 0.75; }
+
+.ts-input:focus {
+    background: var(--bg-input-focus);
+    border-color: var(--filet-fort);
+    box-shadow: 0 0 0 3px rgba(184, 151, 90, 0.1);
+}
+
+.ts-input:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.ts-send {
+    padding: 0 22px;
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #1a0e0a;
+    background: linear-gradient(180deg, var(--or-clair), var(--or));
+    border: 1px solid #8a6d36;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: transform var(--transition), opacity var(--transition);
+}
+
+.ts-send:hover:not(:disabled) { opacity: 0.92; transform: scale(0.98); }
+.ts-send:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.ts-hint {
+    margin: 6px 2px 0;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--text-muted);
+    text-align: right;
+}
+
+.ts-error {
+    margin: 8px 0 0;
+    font-size: 1rem;
+    color: var(--danger);
+}
+
+/* ==============================
+   PANNEAU LATÉRAL
+   ============================== */
+
+.ts-side {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.ts-panel {
+    padding: 24px;
+    background: var(--bg-panel);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-panel);
+    box-shadow: var(--cadre);
+}
+
+.ts-panel-title {
+    margin: 0 0 14px;
+    font-family: var(--font-display);
+    font-size: 12px;
+    line-height: 1.6;
+    letter-spacing: 2px;
+    color: var(--or);
+    font-weight: 600;
+}
+
+.ts-count {
+    margin: 0 0 12px;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+.ts-count span {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--or-clair);
+}
+
+.ts-progress {
+    height: 6px;
+    margin-bottom: 14px;
+    background: var(--ebene);
+    border: 1px solid var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.ts-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--or), var(--or-clair));
+    border-radius: 99px;
+    transition: width 0.4s ease, background 0.3s ease;
+}
+
+.ts-progress-bar.low { background: var(--bordeaux-vif); }
+
+.ts-note {
+    margin: 0 0 14px;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #b9b09c;
+}
+
+.ts-panel .ts-note:last-child { margin-bottom: 0; }
+
+/* ==============================
+   BOUTONS
+   ============================== */
+
+.ts-btn {
+    padding: 11px 20px;
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: transform var(--transition), opacity var(--transition), background var(--transition);
+}
+
+.ts-btn-primary {
+    background: linear-gradient(180deg, var(--or-clair), var(--or));
+    color: #1a0e0a;
+    border: 1px solid #8a6d36;
+}
+.ts-btn-primary:hover { opacity: 0.92; transform: scale(0.98); }
+
+.ts-btn-ghost {
+    background: transparent;
+    color: var(--or-clair);
+    border: 1px solid var(--filet-fort);
+}
+
+.ts-btn-ghost:hover { background: rgba(184, 151, 90, 0.1); transform: scale(0.98); }
+.ts-btn-full { width: 100%; }
+
+.ts-btn:focus-visible,
+.ts-send:focus-visible,
+.ts-back:focus-visible {
+    outline: 2px solid var(--or-clair);
+    outline-offset: 2px;
+}
+
+/* ==============================
+   ANIMATIONS + RESPONSIVE
+   ============================== */
+
+@keyframes tsFadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes tsDot {
+    0%, 80%, 100% { opacity: 0.3; transform: translateY(0); }
+    40%           { opacity: 1;   transform: translateY(-3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ts-page *, .ts-page *::before, .ts-page *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .ts-layout { grid-template-columns: 1fr; }
+    .ts-bubble { max-width: 95%; }
+}

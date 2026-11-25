@@ -1,0 +1,144 @@
+/* ==============================
+   QUERY ZONE — le bureau du majordome
+   ============================== */
+
+.query-zone {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+
+    width: calc(100% - 48px);
+    max-width: 800px;
+
+    background: rgba(12, 8, 9, 0.94);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid var(--filet);
+    border-radius: var(--radius-panel);
+
+    box-shadow:
+            0 6px 28px rgba(0, 0, 0, 0.7),
+            inset 0 0 0 3px var(--nuit),
+            inset 0 0 0 4px rgba(184, 151, 90, 0.16);
+
+    z-index: 1000;
+    transition: box-shadow 0.3s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.query-zone:focus-within {
+    transform: translateX(-50%) translateY(-3px);
+    border-color: var(--filet-fort);
+    box-shadow:
+            0 10px 40px rgba(0, 0, 0, 0.75),
+            inset 0 0 0 3px var(--nuit),
+            inset 0 0 0 4px rgba(184, 151, 90, 0.3);
+}
+
+/* Champ texte */
+.query-zone input {
+    flex: 1;
+    padding: 11px 15px;
+    border-radius: var(--radius);
+    border: 1px solid var(--filet);
+    outline: none;
+
+    background: var(--input);
+    color: var(--ivoire);
+    font-size: 1.05rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    line-height: 1.5;
+
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.query-zone input::placeholder { color: var(--ivoire-terne); font-style: italic; opacity: 0.7; }
+.query-zone input:hover { background: var(--input-focus); }
+
+.query-zone input:focus {
+    background: var(--input-focus);
+    border-color: var(--filet-fort);
+    box-shadow: 0 0 0 2px rgba(184, 151, 90, 0.12);
+}
+
+/* Bouton envoi */
+.query-submit-button {
+    background: var(--bordeaux);
+    border: 1px solid var(--or);
+    outline: none;
+    padding: 0;
+    margin: 0;
+
+    min-width: 40px;
+    min-height: 40px;
+    width: 40px;
+    height: 40px;
+
+    cursor: pointer;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    position: relative;
+}
+
+.query-submit-button img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    filter: sepia(0.8) saturate(1.6) brightness(1.05);
+    opacity: 0.9;
+    transition: filter 0.15s ease, opacity 0.15s ease;
+}
+
+.query-submit-button:hover {
+    background: var(--bordeaux-vif);
+    border-color: var(--or-clair);
+    transform: scale(1.06);
+}
+
+.query-submit-button:hover img { opacity: 1; }
+.query-submit-button:active { transform: scale(0.94); }
+.query-submit-button:focus-visible { outline: 2px solid var(--or-clair); outline-offset: 2px; }
+
+.query-submit-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Animation entrée */
+@keyframes slide-up-fade {
+    from { opacity: 0; transform: translateX(-50%) translateY(16px); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+.query-zone { animation: slide-up-fade 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+
+@media (prefers-reduced-motion: reduce) {
+    .query-zone { animation: none; transition: none; }
+}
+
+/* Responsive */
+@media (max-width: 1024px) { .query-zone { max-width: 600px; } }
+
+@media (max-width: 768px) {
+    .query-zone { bottom: 14px; width: calc(100% - 32px); padding: 8px 10px; }
+    .query-zone input { padding: 10px 13px; font-size: 1rem; }
+    .query-submit-button { min-width: 36px; min-height: 36px; width: 36px; height: 36px; }
+    .query-submit-button img { width: 16px; height: 16px; }
+}
+
+@media (max-width: 480px) {
+    .query-zone { bottom: 10px; width: calc(100% - 20px); padding: 6px 8px; }
+    .query-zone input { padding: 9px 11px; font-size: 0.95rem; }
+}

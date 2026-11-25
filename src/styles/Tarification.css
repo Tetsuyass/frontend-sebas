@@ -1,0 +1,417 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap');
+
+/* ==============================
+   PAGE (scroll interne : le body est en overflow hidden)
+   ============================== */
+
+.tf-page {
+    --bg-panel: var(--panel);
+    --bg-input: var(--input);
+    --text-primary: var(--ivoire);
+    --text-muted: var(--ivoire-terne);
+    --border: var(--filet);
+    --radius: 3px;
+    --transition: 0.25s ease;
+
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    font-family: var(--font-body);
+    font-size: 17px;
+    color: var(--text-primary);
+    background-color: var(--ebene);
+    background-image: url("../assets/background_idea_2.jpg");
+    background-size: cover;
+    background-position: center;
+    box-sizing: border-box;
+}
+
+.tf-page *, .tf-page *::before, .tf-page *::after { box-sizing: border-box; }
+
+.tf-scroll {
+    height: 100%;
+    overflow-y: auto;
+    padding: 40px 6vw 120px; /* espace pour la navbar */
+    background:
+            radial-gradient(ellipse at 50% 0%, rgba(74, 18, 32, 0.3), transparent 60%),
+            linear-gradient(180deg, rgba(12, 8, 9, 0.62), rgba(12, 8, 9, 0.88));
+    scrollbar-width: thin;
+    scrollbar-color: rgba(184, 151, 90, 0.4) transparent;
+}
+
+/* ==============================
+   HEADER
+   ============================== */
+
+.tf-header {
+    max-width: 1100px;
+    margin: 0 auto 44px;
+    text-align: center;
+    animation: tfFadeUp 0.6s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.tf-back {
+    display: block;
+    margin-bottom: 24px;
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: color var(--transition);
+}
+
+.tf-back:hover { color: var(--or-clair); border: none; }
+
+.tf-tag {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 8px 16px;
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    background: var(--bordeaux);
+    color: var(--or-clair);
+    border: 1px solid var(--or);
+    box-shadow: 0 0 0 3px var(--ebene), 0 0 0 4px var(--filet);
+}
+
+.tf-title {
+    margin: 0 0 14px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(28px, 4vw, 46px);
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+    color: var(--ivoire);
+}
+
+.tf-lead {
+    margin: 0 auto 28px;
+    max-width: 540px;
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: #cdc3ae;
+}
+
+/* Toggle mensuel / annuel */
+.tf-toggle {
+    display: inline-flex;
+    padding: 4px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 99px;
+}
+
+.tf-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 20px;
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.tf-toggle-btn:hover { border: none; color: var(--or-clair); }
+
+.tf-toggle-btn.active {
+    background: linear-gradient(180deg, var(--or-clair), var(--or));
+    color: #1a0e0a;
+}
+
+.tf-badge {
+    padding: 2px 8px;
+    font-size: 11px;
+    background: var(--bordeaux);
+    color: var(--or-clair);
+    border-radius: 99px;
+}
+
+/* ==============================
+   OFFRES
+   ============================== */
+
+.tf-plans {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: stretch;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.tf-plan {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 34px 28px;
+    background: var(--bg-panel);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-panel);
+    box-shadow: var(--cadre);
+    transition: transform var(--transition), border-color var(--transition);
+}
+
+.tf-plan:hover {
+    transform: translateY(-3px);
+    border-color: var(--filet-fort);
+}
+
+/* L'offre mise en avant : cadre doré plein, fond velours */
+.tf-plan-highlight {
+    border-color: var(--or);
+    background: linear-gradient(180deg, rgba(74, 18, 32, 0.55), var(--bg-panel) 55%);
+    box-shadow: inset 0 0 0 5px var(--nuit), inset 0 0 0 6px var(--or), 0 18px 48px rgba(0, 0, 0, 0.6);
+}
+
+.tf-popular {
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 14px;
+    white-space: nowrap;
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    background: var(--or);
+    color: #1a0e0a;
+    border: 1px solid #8a6d36;
+}
+
+.tf-plan-name {
+    margin: 0 0 6px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 21px;
+    letter-spacing: 1px;
+    color: var(--or-clair);
+}
+
+.tf-plan-tagline {
+    margin: 0 0 22px;
+    min-height: 48px;
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.55;
+    color: #b9b09c;
+}
+
+.tf-price {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin: 0;
+}
+
+.tf-price-amount {
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--ivoire);
+}
+
+.tf-price-period {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+.tf-price-note {
+    margin: 2px 0 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.tf-quota {
+    margin: 18px 0;
+    padding: 10px 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    background: rgba(184, 151, 90, 0.08);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.tf-features {
+    flex: 1;
+    margin: 0 0 24px;
+    padding: 0;
+    list-style: none;
+}
+
+.tf-features li {
+    position: relative;
+    padding: 7px 0 7px 26px;
+    font-size: 1.08rem;
+    line-height: 1.5;
+    color: #d3c9b4;
+}
+
+.tf-features li::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 11px;
+    width: 5px;
+    height: 10px;
+    border: solid var(--or);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* ==============================
+   BOUTONS
+   ============================== */
+
+.tf-btn {
+    width: 100%;
+    padding: 13px 0;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: transform var(--transition), opacity var(--transition), background var(--transition);
+}
+
+.tf-btn-primary {
+    background: linear-gradient(180deg, var(--or-clair), var(--or));
+    color: #1a0e0a;
+    border: 1px solid #8a6d36;
+}
+.tf-btn-primary:hover { opacity: 0.92; transform: scale(0.98); }
+
+.tf-btn-ghost {
+    background: transparent;
+    color: var(--or-clair);
+    border: 1px solid var(--filet-fort);
+}
+
+.tf-btn-ghost:hover { background: rgba(184, 151, 90, 0.1); transform: scale(0.98); }
+.tf-btn:active { transform: scale(0.94); }
+
+.tf-btn:focus-visible,
+.tf-toggle-btn:focus-visible,
+.tf-back:focus-visible,
+.tf-link:focus-visible {
+    outline: 2px solid var(--or-clair);
+    outline-offset: 2px;
+}
+
+/* ==============================
+   LIENS + FAQ TARIFS
+   ============================== */
+
+.tf-try,
+.tf-help {
+    text-align: center;
+    font-size: 1.05rem;
+    color: var(--text-muted);
+}
+
+.tf-try { margin: 34px 0 0; }
+
+.tf-link {
+    color: var(--or);
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color var(--transition);
+}
+
+.tf-link:hover { color: var(--or-clair); }
+
+.tf-faq {
+    max-width: 1100px;
+    margin: 76px auto 0;
+}
+
+.tf-section-title {
+    margin: 0 0 28px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(20px, 2.4vw, 26px);
+    letter-spacing: 1px;
+    color: var(--or-clair);
+}
+
+.tf-section-title::after {
+    content: '';
+    display: block;
+    width: 120px;
+    height: 1px;
+    margin-top: 14px;
+    background: linear-gradient(90deg, var(--or), transparent);
+}
+
+.tf-faq-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.tf-faq-card {
+    padding: 22px;
+    background: var(--bg-panel);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--or);
+    border-radius: 2px var(--radius-panel) var(--radius-panel) 2px;
+}
+
+.tf-faq-card h3 {
+    margin: 0 0 8px;
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--ivoire);
+}
+
+.tf-faq-card p {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: #b9b09c;
+}
+
+.tf-help { margin: 28px 0 0; }
+
+/* ==============================
+   ANIMATION + RESPONSIVE
+   ============================== */
+
+@keyframes tfFadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tf-page *, .tf-page *::before, .tf-page *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .tf-plans,
+    .tf-faq-grid { grid-template-columns: 1fr; }
+    .tf-plan-tagline { min-height: 0; }
+}

@@ -1,0 +1,52 @@
+.navbar-login {
+    position: fixed;
+    opacity: 1;
+    bottom: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    padding: 12px 0;
+    background-color: var(--ebene);
+    border-top: 1px solid var(--filet);
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(220, 196, 142, 0.08);
+}
+
+#navbar-login-row-1 {
+    opacity: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-self: center;
+
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--ivoire-terne);
+
+    z-index: 1000
+}
+
+#navbar-login-row-1 p {
+    margin: 0 0;
+    padding-block-start: 5px;
+}
+
+#navbar-login-row-1 a {
+    margin: 0 5rem 0 5rem;
+    padding-block-start: 5px;
+    color: var(--or);
+    font-style: italic;
+    transition: color 0.3s;
+}
+
+#navbar-login-row-1 a:hover { color: var(--or-clair); }
+#navbar-login-row-1 a:focus-visible { outline: 2px solid var(--or-clair); outline-offset: 3px; }
+
+.logo-app {
+    width: 5%;
+    height: 5%;
+    padding-left: 5vh;
+}

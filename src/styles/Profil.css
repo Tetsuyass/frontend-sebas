@@ -1,0 +1,31 @@
+/* ==============================
+   PROFIL — médaillon et nom
+   ============================== */
+
+.profil {
+    border-radius: 15px;
+    border: transparent;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--or);
+    box-shadow: 0 0 0 3px var(--ebene), 0 0 0 4px var(--filet), 0 4px 12px rgba(0, 0, 0, 0.6);
+    flex-shrink: 0;
+}
+
+.username {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--or-clair);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
